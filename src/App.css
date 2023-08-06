@@ -6,11 +6,11 @@
 }
 
 .App-header {
-  background-color: whitesmoke;
+  background-color: rgba(245, 245, 245, 0.829);
   overflow: visible;
   width: 100%;
   text-align: center;
-  color: rgb(92, 16, 136);
+  color: rgb(94, 23, 134);
   border-bottom: 1px solid;
 }
 
@@ -53,7 +53,7 @@
 
 .Message-content > .username {
   display: block;
-  color: gray;
+  color: rgb(99, 93, 93);
   font-size: 1rem;
   padding-bottom: 4px;
 }
