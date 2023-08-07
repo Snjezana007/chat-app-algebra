@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Messages from "./Messages";
+import Input from "./Input";
 
 
 function randomName() {
@@ -57,6 +58,9 @@ class App extends Component {
         <Messages
           messages={this.state.messages}
           currentMember={this.state.member}
+        />
+         <Input
+          onSendMessage={this.onSendMessage}
         />
       </div>
     );

@@ -7,12 +7,12 @@ const Messages = ({ messages, currentMember }) => {
       : "Messages-message";
 
     const dynamicText = member.clientData.username;
-    const imageUrl = `https://robohash.org/${dynamicText}.png?size=40x40&set=set4 `;
+    const imageUrl = `https://ui-avatars.com/api/?name=${dynamicText}&background=random`; 
 
     return (
       <li className={className} key={idx}>
         <span className="avatar">
-          <img src={imageUrl} alt="Robo Image" />
+          <img src={imageUrl} alt="Avatar"/>
         </span>
         <div className="Message-content">
           <div className="username">{member.clientData.username}</div>
