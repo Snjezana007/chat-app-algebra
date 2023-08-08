@@ -7,7 +7,7 @@ const Messages = ({ messages, currentMember }) => {
       : "Messages-message";
 
     const dynamicText = member.clientData.username;
-    const imageUrl = `https://ui-avatars.com/api/?name=${dynamicText}&background=random`; 
+    const imageUrl = `https://api.dicebear.com/6.x/lorelei/svg?flip=true`; 
 
     return (
       <li className={className} key={idx}>

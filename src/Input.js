@@ -9,7 +9,7 @@ class Input extends Component {
     }
     warningToast = () => toast.warning('Start typing...', 
     {
-      position:"bottom-left",
+      position:"bottom-center",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
@@ -39,13 +39,13 @@ class Input extends Component {
               onChange={e => this.onChange(e)}
               value={this.state.text}
               type="text"
-              placeholder="Start typing..."
+              placeholder="Start typing...                           "
               autoFocus
             />
             <button>Send</button>
           </form>
           <ToastContainer
-            position="bottom-left"
+            position="bottom-center"
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}

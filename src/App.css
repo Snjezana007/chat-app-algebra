@@ -59,13 +59,13 @@
 }
 
 .Message-content > .text {
-  padding: 10px;
-  max-width: 400px;
+  padding: 5px;
+  max-width: 300px;
   margin: 0;
-  border-radius: 12px;
-  background-color: rgb(113, 126, 151);
-  color: rgb(221, 184, 184);
-  display: inline-block;
+  border-radius: 10px;
+  background-color: rgb(161, 180, 215);
+  color: rgb(54, 28, 28);
+  display:inline-flexbox
 }
 
 .currentMember > .Message-content .text {
@@ -79,12 +79,19 @@ form {
   max-width: 900px;
   margin: 0 auto 40px;
 }
+input {
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(24, 11, 6, 0.064);
+  flex-grow: 1;
+}
 
 button {
   padding: 5px 10px;
   font-size: 16px;
   background-color: rgb(125, 69, 177);
-  color: rgba(255, 255, 255, 0.678);
+  color: rgba(19, 2, 2, 0.678);
   border: none;
   border-radius: 8px;
   margin-left: 10px;
