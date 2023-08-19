@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Messages from "./Messages";
 import Input from "./Input";
@@ -20,60 +21,60 @@ function randomColor() {
   return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
 }
 
-class App extends Component {
-  state = {
-    messages: [],
-    member: {
-      username: randomName(),
-      color: randomColor(),
+
+const App = () => {
+  const [member, setMember] = useState({
+    username: randomName(),
+    color: randomColor(),
+  });
+
+  const [drone, setDrone] = useState();
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    if (!drone) {
+      const drone = new window.Scaledrone("ImB5jZWgMgCKsQPL", {
+        data: member,
+      });
+      drone.on("open", (error) => {
+        if (error) {
+          return console.error(error);
+        }
+        member.id = drone.clientId;
+        setMember(member);
+      });
+      setDrone(drone);
+    } else {
+      const room = drone.subscribe("observable-room");
+      room.on("message", (message) => {
+        const { member, data } = message;
+        setMessages((mess) => [...mess, { member, textMessage: data }]);
+      });
     }
-  }
+  }, [drone, member]);
 
-  constructor() {
-    super();
-    this.drone = new window.Scaledrone("ImB5jZWgMgCKsQPL", {
-      data: this.state.member
+  const onSendMessage = (message) => {
+    drone.publish({
+      room: "observable-room",
+      message,
     });
-    this.drone.on('open', error => {
-      if (error) {
-        return console.error(error);
-      }
-      const member = {...this.state.member};
-      member.id = this.drone.clientId;
-      this.setState({member});
-    });
-    const room = this.drone.subscribe("observable-chat-app-algebra");
-    room.on('data', (data, member) => {
-      const messages = [...this.state.messages];
-      messages.push({member, text: data});
-      this.setState({messages});
-    });
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <h1>Chat App Algebra</h1>
-        </div>
-        <Messages
-          messages={this.state.messages}
-          currentMember={this.state.member}
-        />
-         <Input
-          onSendMessage={this.onSendMessage}
-        />
+  };
+  
+  return (
+    <div className="App">
+      <div className="App-header">
+        <h1>Chat App Algebra</h1>
       </div>
-    );
-  }
-
-  onSendMessage = (message) => {
-    this.drone.publish({
-      room: "observable-chat-app-algebra",
-      message
-    });
-  }
-
+      <Messages
+        messages={messages}
+        currentMember={member}
+      />
+      <Input
+        onSendMessage={onSendMessage}
+      />
+    </div>
+  );
 }
 
 export default App;
+

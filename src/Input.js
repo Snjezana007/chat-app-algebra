@@ -1,66 +1,35 @@
-import {Component} from "react";
-import React from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from "react";
 
-class Input extends Component {
-    state = {
-      text: ""
-    }
-    warningToast = () => toast.warning('Start typing...', 
-    {
-      position:"bottom-center",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme:"colored",
-    });
-    onChange(e) {
-      this.setState({text: e.target.value});
-    }
-  
-    onSubmit(e) {
-      e.preventDefault();
-      if(this.state.text === ""){
-        this.warningToast()
-        return false
-      }
-      this.setState({text: ""});
-      this.props.onSendMessage(this.state.text);
-    }
-    render() {
-      return (
-        <div className="Input">
-          <form onSubmit={e => this.onSubmit(e)}>
-            <input
-              onChange={e => this.onChange(e)}
-              value={this.state.text}
-              type="text"
-              placeholder="Start typing...                           "
-              autoFocus
-            />
-            <button>Send</button>
-          </form>
-          <ToastContainer
-            position="bottom-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-            />
-        </div>
-      );
-    }
-  }
-  
+const Input = ({ onSendMessage }) => {
+  const [text, setText] = useState("");
 
+  const onChange = (e) => {
+    setText(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (text === "") {
+      return false;
+    }
+    setText("");
+    onSendMessage(text);
+  };
+
+  return (
+    <div className="Input">
+      <form onSubmit={onSubmit}>
+        <input
+          onChange={onChange}
+          value={text}
+          type="text"
+          placeholder="Start typing..."
+          autoFocus
+        />
+        <button>Send</button>
+      </form>
+    </div>
+  );
+};
 
 export default Input;

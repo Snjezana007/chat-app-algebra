@@ -1,13 +1,12 @@
-
 .App {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
   background-color: rgba(163, 209, 219, 0.616);
-  background-size: cover; 
-  background-repeat: no-repeat; 
-  background-attachment: fixed; 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .App-header {
@@ -35,7 +34,7 @@
 }
 
 .Messages-message.currentMember {
-  flex-direction:row-reverse;
+  flex-direction: row-reverse;
   text-align: right;
 }
 
@@ -58,7 +57,7 @@
 .Message-content > .username {
   display: block;
   color: rgb(24, 21, 46);
-  font-size: 1rem;
+  font-size: 18px;
   padding-bottom: 4px;
 }
 
@@ -69,7 +68,7 @@
   border-radius: 10px;
   background-color: rgb(180, 189, 209);
   color: rgb(54, 28, 28);
-  display:inline-flexbox
+  display: inline-flexbox;
 }
 
 .currentMember > .Message-content .text {
