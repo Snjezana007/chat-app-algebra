@@ -17,15 +17,11 @@ function randomName() {
   return adjective + noun;
 }
 
-function randomColor() {
-  return '#' + Math.floor(Math.random() * 0xFFFFFF).toString(16);
-}
 
 
 const App = () => {
   const [member, setMember] = useState({
     username: randomName(),
-    color: randomColor(),
   });
 
   const [drone, setDrone] = useState();
@@ -48,7 +44,7 @@ const App = () => {
       const room = drone.subscribe("observable-room");
       room.on("message", (message) => {
         const { member, data } = message;
-        setMessages((mess) => [...mess, { member, textMessage: data }]);
+        setMessages((mess) => [...mess, { member, text: data }]);
       });
     }
   }, [drone, member]);

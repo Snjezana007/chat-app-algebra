@@ -1,5 +1,9 @@
 import React from "react";
 
+function randomColor() {
+  return "#" + Math.floor(Math.random() * 0xffffff).toString(16);
+}
+
 const Messages = ({ messages, currentMember }) => {
   return (
     <ul className="Messages-list">
@@ -26,9 +30,13 @@ const MessageItem = ({ message, currentMember }) => {
     ? `https://api.dicebear.com/6.x/lorelei/svg?flip=true`
     : `https://api.dicebear.com/6.x/lorelei/svg?flip=false`;
 
+  const avatarStyle = {
+    backgroundColor: randomColor(),
+  };
+
   return (
     <li className={className}>
-      <span className="avatar">
+      <span className="avatar" style={avatarStyle}>
         <img src={imageUrl} alt="Avatar" />
       </span>
       <div className="Message-content">
