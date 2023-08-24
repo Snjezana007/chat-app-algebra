@@ -53,7 +53,7 @@
 
 .Message-content > .text {
   padding: 5px;
-  max-width: 300px;
+  width: auto;
   margin: 0;
   border-radius: 10px;
   background-color: rgb(180, 189, 209);
