@@ -6,7 +6,7 @@ function randomColor() {
 
 const Messages = ({ messages, currentMember }) => {
   return (
-    <ul className="Messages-list">
+    <ul>
       {messages.map((message, idx) => (
         <MessageItem
           key={idx}
