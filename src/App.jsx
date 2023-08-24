@@ -27,9 +27,10 @@ const App = () => {
   const [drone, setDrone] = useState();
   const [messages, setMessages] = useState([]);
 
+
   useEffect(() => {
     if (!drone) {
-      const drone = new window.Scaledrone("ImB5jZWgMgCKsQPL", {
+      const drone = new window.Scaledrone(`${process.env.REACT_APP_CHANNEL_ID}`, {
         data: member,
       });
       drone.on("open", (error) => {
